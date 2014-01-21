@@ -20,7 +20,6 @@ namespace UltimateTeam.Toolkit.Parameters
 
         public string BuildUriString(ref string uriString)
         {
-            //var ClubItens = "club?start=0&count=20&type={0}&level=10";
             uriString += "&type=" + (int)ClubItemType;
 
             return uriString;

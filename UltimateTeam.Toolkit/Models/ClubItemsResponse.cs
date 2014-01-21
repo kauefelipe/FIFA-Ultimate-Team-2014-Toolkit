@@ -2,7 +2,7 @@
 
 namespace UltimateTeam.Toolkit.Models
 {
-    public class ClubItensResponse
+    public class ClubItemsResponse
     {
         public List<ItemData> ItemData { get; set; }
     }

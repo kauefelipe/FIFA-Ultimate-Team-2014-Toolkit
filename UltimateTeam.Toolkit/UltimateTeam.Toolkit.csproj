@@ -63,7 +63,7 @@
     <Compile Include="Models\AuctionResponse.cs" />
     <Compile Include="Models\BidTokens.cs" />
     <Compile Include="Models\CardType.cs" />
-    <Compile Include="Models\ClubItensResponse.cs" />
+    <Compile Include="Models\ClubItemsResponse.cs" />
     <Compile Include="Models\CreditsResponse.cs" />
     <Compile Include="Models\Currency.cs" />
     <Compile Include="Models\DateOfBirth.cs" />
@@ -117,7 +117,7 @@
     <Compile Include="Parameters\TrainingSearchParameters.cs" />
     <Compile Include="Parameters\TrainingType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Requests\ClubItensRequest.cs" />
+    <Compile Include="Requests\ClubItemsRequest.cs" />
     <Compile Include="Requests\HttpClientWrapper.cs" />
     <Compile Include="Requests\IHttpClient.cs" />
     <Compile Include="Requests\RemoveFromTradePileRequest.cs" />

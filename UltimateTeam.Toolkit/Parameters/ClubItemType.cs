@@ -14,7 +14,7 @@ namespace UltimateTeam.Toolkit.Parameters
         FitnessCoach = 4,
         Physio = 5,
         Consumables = 6,
-        ClubItens = 7,
+        ClubItems = 7,
         //ErrorReturn = 9,
         GkCoach = 10,
         

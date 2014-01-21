@@ -55,7 +55,7 @@ namespace UltimateTeam.Toolkit.Factories
 
         private Func<IFutRequest<PileSizeResponse>> _pileSizeRequestFactory;
 
-        private Func<ClubItemSearchParameters, IFutRequest<ClubItensResponse>> _clubItensRequestFactory;
+        private Func<ClubItemSearchParameters, IFutRequest<ClubItemsResponse>> _clubItemsRequestFactory;
 
         public string PhishingToken
         {
@@ -419,11 +419,11 @@ namespace UltimateTeam.Toolkit.Factories
             }
         }
 
-        public Func<ClubItemSearchParameters, IFutRequest<ClubItensResponse>> ClubItensRequestFactory
+        public Func<ClubItemSearchParameters, IFutRequest<ClubItemsResponse>> ClubItemsRequestFactory
         {
             get
             {
-                return _clubItensRequestFactory ?? (_clubItensRequestFactory = clubItemSearchParameters => new ClubItensRequest(clubItemSearchParameters)
+                return _clubItemsRequestFactory ?? (_clubItemsRequestFactory = clubItemSearchParameters => new ClubItemsRequest(clubItemSearchParameters)
                 {
                     PhishingToken = PhishingToken,
                     SessionId = SessionId,
@@ -434,7 +434,7 @@ namespace UltimateTeam.Toolkit.Factories
             set
             {
                 value.ThrowIfNullArgument();
-                _clubItensRequestFactory = value;
+                _clubItemsRequestFactory = value;
             }
         }
     }

@@ -7,35 +7,29 @@ using UltimateTeam.Toolkit.Parameters;
 
 namespace UltimateTeam.Toolkit.Requests
 {
-    internal class ClubItensRequest : FutRequestBase, IFutRequest<ClubItensResponse>
+    internal class ClubItemsRequest : FutRequestBase, IFutRequest<ClubItemsResponse>
     {
         private readonly ClubItemSearchParameters _clubItemSearchParameters;
 
-        public ClubItensRequest(ClubItemSearchParameters clubItemSearchParameters)
+        public ClubItemsRequest(ClubItemSearchParameters clubItemSearchParameters)
         {
             clubItemSearchParameters.ThrowIfNullArgument();
             _clubItemSearchParameters = clubItemSearchParameters;
         }
 
-        public async Task<ClubItensResponse> PerformRequestAsync()
+        public async Task<ClubItemsResponse> PerformRequestAsync()
         {
-            //var uriString = string.Format(Resources.FutHome + Resources.TransferMarket + "?start={0}&num={1}",
-            //    (_searchParameters.Page - 1) * _searchParameters.PageSize, _searchParameters.PageSize + 1);
-            //_searchParameters.BuildUriString(ref uriString);
-
-            //var ClubItens = "club?start=0&count=20&type={0}&level=10";
-
-            var uriString = string.Format(Resources.FutHome + Resources.ClubItens + "?start={0}&count={1}",
+            var uriString = string.Format(Resources.FutHome + Resources.ClubItems + "?start={0}&count={1}",
                 (_clubItemSearchParameters.Page - 1) * _clubItemSearchParameters.PageSize, _clubItemSearchParameters.PageSize); 
             _clubItemSearchParameters.BuildUriString(ref uriString);
 
             AddMethodOverrideHeader(HttpMethod.Get);
             AddCommonHeaders();
-            var clubItensResponseMessage = await HttpClient
+            var clubItemsResponseMessage = await HttpClient
                 .GetAsync(uriString)
                 .ConfigureAwait(false);
 
-            return await Deserialize<ClubItensResponse>(clubItensResponseMessage);
+            return await Deserialize<ClubItemsResponse>(clubItemsResponseMessage);
         }
     }
 }

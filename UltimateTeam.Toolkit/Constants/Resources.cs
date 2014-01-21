@@ -48,6 +48,6 @@
 
         public const string PileSize = "clientdata/pileSize";
 
-        public const string ClubItens = "club";
+        public const string ClubItems = "club";
     }
 }
