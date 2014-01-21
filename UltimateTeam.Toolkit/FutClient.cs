@@ -45,6 +45,13 @@ namespace UltimateTeam.Toolkit
             return _requestFactories.PlaceBidRequestFactory(auctionInfo, bidAmount).PerformRequestAsync();
         }
 
+        public Task<Item> GetItemAsync(ItemData itemData)
+        {
+            itemData.ThrowIfNullArgument();
+
+            return _requestFactories.ItemByItemDataRequestFactory(itemData).PerformRequestAsync();
+        }
+
         public Task<Item> GetItemAsync(AuctionInfo auctionInfo)
         {
             auctionInfo.ThrowIfNullArgument();
