@@ -147,5 +147,10 @@ namespace UltimateTeam.Toolkit
             
             return _requestFactories.QuickSellRequestFactory(itemIds).PerformRequestAsync();
         }
+
+        public Task<ClubItemsResponse> GetClubItensAsync(ClubItemSearchParameters clubItemSearchParameters)
+        {
+            return _requestFactories.ClubItemsRequestFactory(clubItemSearchParameters).PerformRequestAsync();
+        }
     }
 }
