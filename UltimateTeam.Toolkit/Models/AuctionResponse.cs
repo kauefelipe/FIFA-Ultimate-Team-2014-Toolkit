@@ -16,11 +16,5 @@ namespace UltimateTeam.Toolkit.Models
 
         // TODO: I have no idea what type/structure this has, only seen null
         public string ErrorState { get; set; }
-
-        public string Debug { get; set; }
-        public string Message { get; set; }
-        public string Reason { get; set; }
-        public string String { get; set; }
-        public string Code { get; set; }
     }
 }
