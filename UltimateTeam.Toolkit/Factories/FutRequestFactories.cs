@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Net;
 using UltimateTeam.Toolkit.Constants;
@@ -33,6 +33,10 @@ namespace UltimateTeam.Toolkit.Factories
 
         private Func<AuctionInfo, IFutRequest<byte[]>> _playerImageRequestFactory;
 
+        private Func<AuctionInfo, IFutRequest<byte[]>> _clubImageRequestFactory;
+
+        private Func<Item, IFutRequest<byte[]>> _nationImageRequestFactory;
+
         private Func<IEnumerable<long>, IFutRequest<AuctionResponse>> _tradeStatusRequestFactory;
 
         private Func<IFutRequest<CreditsResponse>> _creditsRequestFactory;
@@ -45,17 +49,23 @@ namespace UltimateTeam.Toolkit.Factories
 
         private Func<AuctionDetails, IFutRequest<ListAuctionResponse>> _listAuctionRequestFactory;
 
+        private Func<IEnumerable<AuctionInfo>, IFutRequest<byte>> _addToWatchlistRequestFactory;
+
         private Func<IEnumerable<AuctionInfo>, IFutRequest<byte>> _removeFromWatchlistRequestFactory;
 
         private Func<AuctionInfo, IFutRequest<byte>> _removeFromTradePileRequestFactory;
 
         private Func<ItemData, IFutRequest<SendItemToTradePileResponse>> _sendItemToTradePileRequestFactory;
 
+        private Func<ItemData, IFutRequest<SendItemToClubResponse>> _sendItemToClubRequestFactory;
+
         private Func<IEnumerable<long>, IFutRequest<QuickSellResponse>> _quickSellRequestFactory;
 
         private Func<IFutRequest<PileSizeResponse>> _pileSizeRequestFactory;
 
         private Func<ClubItemSearchParameters, IFutRequest<ClubItemsResponse>> _clubItemsRequestFactory;
+
+        private Func<IFutRequest<ConsumablesResponse>> _consumablesRequestFactory;
 
         public string PhishingToken
         {
@@ -209,6 +219,44 @@ namespace UltimateTeam.Toolkit.Factories
             }
         }
 
+        public Func<AuctionInfo, IFutRequest<byte[]>> ClubImageRequestFactory
+        {
+            get
+            {
+                return _clubImageRequestFactory ?? (_clubImageRequestFactory = info => new ClubImageRequest(info)
+                {
+                    PhishingToken = PhishingToken,
+                    SessionId = SessionId,
+                    HttpClient = HttpClient,
+                    Resources = _resources
+                });
+            }
+            set
+            {
+                value.ThrowIfNullArgument();
+                _clubImageRequestFactory = value;
+            }
+        }
+
+        public Func<Item, IFutRequest<byte[]>> NationImageRequestFactory
+        {
+            get
+            {
+                return _nationImageRequestFactory ?? (_nationImageRequestFactory = info => new NationImageRequest(info)
+                {
+                    PhishingToken = PhishingToken,
+                    SessionId = SessionId,
+                    HttpClient = HttpClient,
+                    Resources = _resources
+                });
+            }
+            set
+            {
+                value.ThrowIfNullArgument();
+                _nationImageRequestFactory = value;
+            }
+        }
+
         public Func<IEnumerable<long>, IFutRequest<AuctionResponse>> TradeStatusRequestFactory
         {
             get
@@ -323,6 +371,26 @@ namespace UltimateTeam.Toolkit.Factories
             }
         }
 
+        public Func<IEnumerable<AuctionInfo>, IFutRequest<byte>> AddToWatchlistRequestFactory
+        {
+            get
+            {
+                return _addToWatchlistRequestFactory ?? (_addToWatchlistRequestFactory = info => new AddToWatchlistRequest(info)
+                {
+                    PhishingToken = PhishingToken,
+                    SessionId = SessionId,
+                    HttpClient = HttpClient,
+                    Resources = _resources
+                });
+            }
+            set
+            {
+                value.ThrowIfNullArgument();
+                _addToWatchlistRequestFactory = value;
+            }
+        }
+
+
         public Func<IEnumerable<AuctionInfo>, IFutRequest<byte>> RemoveFromWatchlistRequestFactory
         {
             get
@@ -358,6 +426,25 @@ namespace UltimateTeam.Toolkit.Factories
             {
                 value.ThrowIfNullArgument();
                 _removeFromTradePileRequestFactory = value;
+            }
+        }
+
+        public Func<ItemData, IFutRequest<SendItemToClubResponse>> SendItemToClubRequestFactory
+        {
+            get
+            {
+                return _sendItemToClubRequestFactory ?? (_sendItemToClubRequestFactory = itemData => new SendItemToClubRequest(itemData)
+                {
+                    PhishingToken = PhishingToken,
+                    SessionId = SessionId,
+                    HttpClient = HttpClient,
+                    Resources = _resources
+                });
+            }
+            set
+            {
+                value.ThrowIfNullArgument();
+                _sendItemToClubRequestFactory = value;
             }
         }
 
@@ -419,11 +506,24 @@ namespace UltimateTeam.Toolkit.Factories
             }
         }
 
+
         public Func<ClubItemSearchParameters, IFutRequest<ClubItemsResponse>> ClubItemsRequestFactory
         {
             get
             {
-                return _clubItemsRequestFactory ?? (_clubItemsRequestFactory = clubItemSearchParameters => new ClubItemsRequest(clubItemSearchParameters)
+                return _clubItemsRequestFactory ??
+                       (_clubItemsRequestFactory =
+                           clubItemSearchParameters => new ClubItemsRequest(clubItemSearchParameters));
+            }
+            set { _clubItemsRequestFactory = value; }
+        }
+
+        public Func<IFutRequest<ConsumablesResponse>> ConsumablesRequestFactory
+        {
+            get
+            {
+                return _consumablesRequestFactory ?? (_consumablesRequestFactory = () => new ConsumablesRequest
+
                 {
                     PhishingToken = PhishingToken,
                     SessionId = SessionId,
@@ -434,7 +534,8 @@ namespace UltimateTeam.Toolkit.Factories
             set
             {
                 value.ThrowIfNullArgument();
-                _clubItemsRequestFactory = value;
+                _consumablesRequestFactory = value;
+
             }
         }
     }

@@ -83,6 +83,11 @@ namespace UltimateTeam.Toolkit
             return _requestFactories.PileSizeRequestFactory().PerformRequestAsync();
         }
 
+        public Task<ConsumablesResponse> GetConsumablesAsync()
+        {
+            return _requestFactories.ConsumablesRequestFactory().PerformRequestAsync();
+        }
+        
         public Task<AuctionResponse> GetTradePileAsync()
         {
             return _requestFactories.TradePileRequestFactory().PerformRequestAsync();
@@ -105,6 +110,18 @@ namespace UltimateTeam.Toolkit
             return _requestFactories.ListAuctionFactory(auctionDetails).PerformRequestAsync();
         }
 
+        public Task AddToWatchlistRequestAsync(IEnumerable<AuctionInfo> auctionInfo)
+        {
+            auctionInfo.ThrowIfNullArgument();
+
+            return _requestFactories.AddToWatchlistRequestFactory(auctionInfo).PerformRequestAsync();
+        }
+
+        public Task AddToWatchlistRequestAsync(AuctionInfo auctionInfo)
+        {
+            return AddToWatchlistRequestAsync(new [] { auctionInfo });
+        }
+
         public Task RemoveFromWatchlistAsync(IEnumerable<AuctionInfo> auctionInfo)
         {
             auctionInfo.ThrowIfNullArgument();
@@ -124,6 +141,13 @@ namespace UltimateTeam.Toolkit
             return _requestFactories.RemoveFromTradePileRequestFactory(auctionInfo).PerformRequestAsync();
         }
 
+        public Task<SendItemToClubResponse> SendItemToClubAsync(ItemData itemData)
+        {
+            itemData.ThrowIfNullArgument();
+
+            return _requestFactories.SendItemToClubRequestFactory(itemData).PerformRequestAsync();
+        }
+
         public Task<SendItemToTradePileResponse> SendItemToTradePileAsync(ItemData itemData)
         {
             itemData.ThrowIfNullArgument();
@@ -137,6 +161,7 @@ namespace UltimateTeam.Toolkit
 
             return QuickSellItemAsync(new[] { itemId });
         }
+
         public Task<QuickSellResponse> QuickSellItemAsync(IEnumerable<long> itemIds)
         {
             if (itemIds == null) throw new ArgumentNullException("itemIds");
@@ -151,6 +176,21 @@ namespace UltimateTeam.Toolkit
         public Task<ClubItemsResponse> GetClubItemsAsync(ClubItemSearchParameters clubItemSearchParameters)
         {
             return _requestFactories.ClubItemsRequestFactory(clubItemSearchParameters).PerformRequestAsync();
+        }
+
+        public Task<byte[]> GetClubImageAsync(AuctionInfo auctionInfo)
+        {
+            auctionInfo.ThrowIfNullArgument();
+
+            return _requestFactories.ClubImageRequestFactory(auctionInfo).PerformRequestAsync();
+        }
+
+        public Task<byte[]> GetNationImageAsync(Item item)
+        {
+            item.ThrowIfNullArgument();
+
+            return _requestFactories.NationImageRequestFactory(item).PerformRequestAsync();
+
         }
     }
 }

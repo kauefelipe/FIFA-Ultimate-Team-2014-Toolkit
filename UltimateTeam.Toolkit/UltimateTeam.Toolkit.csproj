@@ -64,6 +64,9 @@
     <Compile Include="Models\BidTokens.cs" />
     <Compile Include="Models\CardType.cs" />
     <Compile Include="Models\ClubItemsResponse.cs" />
+    <Compile Include="Models\Consumables.cs" />
+    <Compile Include="Models\ConsumablesCategory.cs" />
+    <Compile Include="Models\ConsumablesResponse.cs" />
     <Compile Include="Models\CreditsResponse.cs" />
     <Compile Include="Models\Currency.cs" />
     <Compile Include="Models\DateOfBirth.cs" />
@@ -80,6 +83,7 @@
     <Compile Include="Models\PurchasedItemsResponse.cs" />
     <Compile Include="Models\QuickSellResponse.cs" />
     <Compile Include="Models\RareType.cs" />
+    <Compile Include="Models\SendItemToClubResponse.cs" />
     <Compile Include="Models\SendItemToTradePileResponse.cs" />
     <Compile Include="Models\TradePileItem.cs" />
     <Compile Include="Models\UnopenedPacks.cs" />
@@ -99,8 +103,10 @@
     <Compile Include="Parameters\BallSearchParameters.cs" />
     <Compile Include="Parameters\ClubItemType.cs" />
     <Compile Include="Parameters\ClubItemSearchParameters.cs" />
+    <Compile Include="Parameters\ContractCards.cs" />
     <Compile Include="Parameters\DevelopmentSearchParameters.cs" />
     <Compile Include="Parameters\DevelopmentType.cs" />
+    <Compile Include="Parameters\FitnessCards.cs" />
     <Compile Include="Parameters\League.cs" />
     <Compile Include="Parameters\Level.cs" />
     <Compile Include="Parameters\Nation.cs" />
@@ -118,8 +124,12 @@
     <Compile Include="Parameters\TrainingType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requests\ClubItemsRequest.cs" />
+    <Compile Include="Requests\AddToWatchlistRequest.cs" />
+    <Compile Include="Requests\ClubImageRequest.cs" />
+    <Compile Include="Requests\ConsumablesRequest.cs" />
     <Compile Include="Requests\HttpClientWrapper.cs" />
     <Compile Include="Requests\IHttpClient.cs" />
+    <Compile Include="Requests\NationImageRequest.cs" />
     <Compile Include="Requests\RemoveFromTradePileRequest.cs" />
     <Compile Include="Requests\CreditsRequest.cs" />
     <Compile Include="Requests\FutRequestBase.cs" />
@@ -133,6 +143,7 @@
     <Compile Include="Requests\PurchasedItemsRequest.cs" />
     <Compile Include="Requests\QuickSellRequest.cs" />
     <Compile Include="Requests\SearchRequest.cs" />
+    <Compile Include="Requests\SendItemToClubRequest.cs" />
     <Compile Include="Requests\SendItemToTradePileRequest.cs" />
     <Compile Include="Requests\TradePileRequest.cs" />
     <Compile Include="Requests\TradeStatusRequest.cs" />
