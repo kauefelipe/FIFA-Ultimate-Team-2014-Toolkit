@@ -28,6 +28,8 @@
         
         public const string FutHomeXbox360 = "https://utas.fut.ea.com/ut/game/fifa14/";
 
+        public const string MyClub = "club?level=10";
+                
         public const string TransferMarket = "transfermarket";
 
         public const string Bid = "trade/{0}/bid";
@@ -55,7 +57,11 @@
         public const string ClubItems = "club";
         
         public const string Consumables = "club/stats/consumables";
-        
+
+        public const string SquadList = "squad/list";
+
+        public const string SquadDetails = "squad/{0}";
+
         public const string ReList = "relist";
     }
 }

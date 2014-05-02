@@ -3,9 +3,11 @@ FIFA Ultimate Team 2014 Toolkit
 
 ## Supported platforms
 - .NET 4 and higher
-- Silverlight 4 and higher
-- Windows Phone 7.5 and higher
+- Silverlight 5
+- Windows Phone 8
 - Windows Store Apps
+- Xamarin.Android
+- Xamarin.iOS
 
 ## NuGet packages
 
@@ -37,6 +39,9 @@ If you're targeting .NET 4.5 or .NET for Windows Store apps, you'll need:
 [Remove from trade pile](https://github.com/trydis/FIFA-Ultimate-Team-2014-Toolkit#remove-from-trade-pile)  
 [Get pile sizes](https://github.com/trydis/FIFA-Ultimate-Team-2014-Toolkit#get-pile-sizes)  
 [ReList Tradepile](https://github.com/trydis/FIFA-Ultimate-Team-2014-Toolkit#relist-tradepile)  
+[Get players from club] (https://github.com/trydis/FIFA-Ultimate-Team-2014-Toolkit#get-players-from-club)  
+[Get squads from club] (https://github.com/trydis/FIFA-Ultimate-Team-2014-Toolkit#get-squads-from-club)  
+[Get squad details] (https://github.com/trydis/FIFA-Ultimate-Team-2014-Toolkit#get-squad-details)  
 
 ### Initialization
 
@@ -271,4 +276,41 @@ Re-listing all tradepile items listed before.
 
 ```csharp
 await client.ReListAsync();
+```
+
+### Get players from club
+
+Gets the players from your 'My Club' section.  Note, this will be expanded to include staff and club items.
+
+```csharp
+var clubItems = await client.GetClubItemsAsync();
+foreach (var itemData in clubItems.ItemData)
+{
+    // deal with players
+}
+```  
+
+### Get squads from club
+
+Gets the squads in your club.  Note - many of the fields, such as players etc are not populated here and are in the squad details below.
+
+```csharp
+var squadListResponse = await client.GetSquadListAsync();
+foreach (var squad in squadListResponse.squad)
+{
+	string name = squad.squadName;
+	// etc.
+}
+```
+
+### Get squad details
+
+```csharp
+var squadDetailsResponse = await client.GetSquadDetailsAsync(squad.id);
+foreach (var squadPlayer in squadDetailsResponse.players)
+{
+	var itemData = squadPlayer.itemData;
+	//read properties of players etc.  
+	//Positions seem to be set by index number and depend on formation
+}
 ```

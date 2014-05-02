@@ -32,6 +32,12 @@ namespace UltimateTeam.Toolkit
 
         Task<WatchlistResponse> GetWatchlistAsync();
 
+        Task<ClubItemResponse> GetClubItemsAsync();
+
+        Task<SquadListResponse> GetSquadListAsync();
+
+        Task<SquadDetailsResponse> GetSquadDetailsAsync(ushort squadId);
+
         Task<PurchasedItemsResponse> GetPurchasedItemsAsync();
 
         Task<ListAuctionResponse> ListAuctionAsync(AuctionDetails auctionDetails);
