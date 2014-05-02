@@ -66,6 +66,8 @@ namespace UltimateTeam.Toolkit.Factories
         private Func<ClubItemSearchParameters, IFutRequest<ClubItemsResponse>> _clubItemsRequestFactory;
 
         private Func<IFutRequest<ConsumablesResponse>> _consumablesRequestFactory;
+        
+        private Func<IFutRequest<byte>> _reListRequestFactory;
 
         public string PhishingToken
         {
@@ -536,6 +538,25 @@ namespace UltimateTeam.Toolkit.Factories
                 value.ThrowIfNullArgument();
                 _consumablesRequestFactory = value;
 
+            }
+        }
+        
+        public Func<IFutRequest<byte>> ReListRequestFactory
+        {
+            get
+            {
+                return _reListRequestFactory  ?? (_reListRequestFactory= () => new ReListRequest
+                {
+                    PhishingToken = PhishingToken,
+                    SessionId = SessionId,
+                    HttpClient = HttpClient,
+                    Resources = _resources
+                });
+            }
+            set
+            {
+                value.ThrowIfNullArgument();
+                _reListRequestFactory= value;
             }
         }
     }

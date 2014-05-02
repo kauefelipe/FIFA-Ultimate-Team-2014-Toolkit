@@ -10,6 +10,8 @@ namespace UltimateTeam.Toolkit.Models
 
         public UnopenedPacks UnopenedPacks { get; set; }
 
+        public BidTokens BidTokens { get; set; }
+
         public double FutCashBalance { get; set; }
     }
 }

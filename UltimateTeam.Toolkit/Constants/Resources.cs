@@ -55,5 +55,7 @@
         public const string ClubItems = "club";
         
         public const string Consumables = "club/stats/consumables";
+        
+        public const string ReList = "relist";
     }
 }
